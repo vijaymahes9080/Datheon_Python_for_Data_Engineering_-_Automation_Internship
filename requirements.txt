@@ -1,0 +1,18 @@
+# StreamForge: Intelligent Data Extraction, Quality Engineering, Database Integration & Workflow Automation
+# Core Runtime Dependencies
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+pandas>=2.1.0
+SQLAlchemy>=2.0.0
+schedule>=1.2.0
+streamlit>=1.30.0
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Optional Database Connectors
+psycopg2-binary>=2.9.9
+
+# Testing & Quality Assurance
+pytest>=7.4.0
+pytest-cov>=4.1.0
