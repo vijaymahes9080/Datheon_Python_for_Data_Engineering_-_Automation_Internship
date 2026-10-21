@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamForge ⚡ Enterprise Data Engineering & Automation</title>
+  <meta name="description" content="StreamForge — Autonomous ETL pipeline, schema transformation, idempotent database ingestion and workflow automation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+      --border-hover: #CBD5E1;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --primary: #0284C7;
+      --primary-hover: #0369A1;
+      --primary-light: #E0F2FE;
+      --accent: #38BDF8;
+      --success: #059669;
+      --success-light: #ECFDF5;
+      --warning: #D97706;
+      --warning-light: #FEF3C7;
+      --danger: #DC2626;
+      --danger-light: #FEE2E2;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-badge {
+      background: linear-gradient(135deg, #0284C7, #0EA5E9);
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      display: inline-block;
+    }
+    .logo-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--success-light);
+      color: var(--success);
+      border: 1px solid #A7F3D0;
+    }
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--text);
+      color: white;
+      text-decoration: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.15s ease;
+    }
+    .btn-github:hover {
+      background: #1E293B;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.75rem 1.5rem 4rem;
+    }
+
+    /* Hero Section */
+    .hero-banner-wrap {
+      margin-bottom: 2rem;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      background: white;
+    }
+    .hero-banner-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .metric-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+    .metric-val {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+    .metric-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* Tabs Bar */
+    .tabs-bar {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 0.65rem 1.15rem;
+      border: none;
+      background: none;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Content Cards */
+    .panel-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1.5rem;
+    }
+    .panel-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .panel-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Filter Toolbar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .search-input {
+      flex: 1 1 260px;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+    .filter-select {
+      padding: 0.55rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      background: white;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      text-align: left;
+    }
+    th {
+      background: #F1F5F9;
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background: #F8FAFC;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .tag-blue { background: var(--primary-light); color: var(--primary); }
+    .tag-green { background: var(--success-light); color: var(--success); }
+    .tag-amber { background: var(--warning-light); color: var(--warning); }
+    .tag-red { background: var(--danger-light); color: var(--danger); }
+
+    /* Pagination */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .page-btn {
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-weight: 600;
+    }
+    .page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Stage Steps Grid */
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .stage-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.15rem;
+      background: #F8FAFC;
+    }
+    .stage-num {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+    .stage-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .stage-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Chart Simulation Bar */
+    .chart-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .chart-label {
+      width: 140px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .chart-bar-bg {
+      flex: 1;
+      height: 22px;
+      background: #F1F5F9;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 0 1rem;
+    }
+    .chart-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0284C7, #38BDF8);
+      border-radius: 6px;
+      transition: width 0.5s ease;
+    }
+    .chart-value {
+      width: 90px;
+      text-align: right;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--primary);
+    }
+
+    pre, code {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+    }
+    pre {
+      background: #0F172A;
+      color: #F8FAFC;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      background: white;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo-area">
+        <span class="logo-badge">⚡</span>
+        <span class="logo-title">StreamForge Data Operations</span>
+      </a>
+      <div class="nav-links">
+        <span class="nav-badge">● 38/38 Tests Passing</span>
+        <span class="nav-badge" style="background:#EEF2FF; color:#4F46E5; border-color:#C7D2FE;">0 Duplicates</span>
+        <a href="https://github.com/vijaymahes9080/Datheon_Python_for_Data_Engineering_-_Automation_Internship" target="_blank" class="btn-github">
+          GitHub Repo
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Light Banner -->
+    <div class="hero-banner-wrap">
+      <img src="assets/hero_banner.svg" onerror="this.src='assets/hero_banner.png'" alt="StreamForge Hero Banner">
+    </div>
+
+    <!-- Executive Metrics Grid -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Clean Stored Listings</div>
+        <div class="metric-val" id="metric-jobs">115</div>
+        <div class="metric-sub">✅ Validated &amp; Harmonized</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Quality Clean Rate</div>
+        <div class="metric-val" style="color:var(--success);">94.3%</div>
+        <div class="metric-sub">🛡️ 7 Records Rejected (Dead Letter)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Duplicate Write Rate</div>
+        <div class="metric-val" style="color:#4F46E5;">0.0%</div>
+        <div class="metric-sub">🔒 Idempotent Composite Upserts</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">E2E Pipeline Speed</div>
+        <div class="metric-val" style="color:var(--primary);">0.629s</div>
+        <div class="metric-sub">⚡ 8 Automated Stages Complete</div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab('overview')">🏗️ Architecture &amp; Workflow</button>
+      <button class="tab-btn" onclick="switchTab('explorer')">📊 Live Data Explorer (115)</button>
+      <button class="tab-btn" onclick="switchTab('audit')">🛡️ Dead-Letter Audit (1)</button>
+      <button class="tab-btn" onclick="switchTab('analytics')">📈 Salary &amp; Market Analytics</button>
+      <button class="tab-btn" onclick="switchTab('tasks')">🧩 4 Tasks Specification</button>
+      <button class="tab-btn" onclick="switchTab('reports')">📑 Ingestion Reports &amp; JSON</button>
+    </div>
+
+    <!-- TAB 1: OVERVIEW & WORKFLOW -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>End-to-End Orchestrated Pipeline</span>
+          <span class="tag tag-blue">8-Stage Automated Execution Engine</span>
+        </div>
+        <div class="panel-subtitle">
+          Autonomous web scraper, regex currency cleaning, schema validation, and idempotent database auto-ingestion.
+        </div>
+        <div style="border-radius:12px; overflow:hidden; border:1px solid var(--border); margin-bottom:1.5rem;">
+          <img src="assets/pipeline_workflow.svg" onerror="this.src='assets/pipeline_workflow.png'" style="width:100%; display:block;" alt="Architecture Workflow">
+        </div>
+
+        <div class="stages-grid">
+          <div class="stage-item">
+            <div class="stage-num">STAGE 01</div>
+            <div class="stage-title">Initialize &amp; Mutex</div>
+            <div class="stage-desc">Verifies environment configuration and creates <code>logs/pipeline.lock</code> to prevent concurrency races.</div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-num">STAGE 02</div>
+            <div class="stage-title">Extract (Scraper)</div>
+            <div class="stage-desc">Scrapes multi-page HTML listings using BeautifulSoup4 with exponential retries and SHA-256 fingerprinting.</div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-num">STAGE 03</div>
+            <div class="stage-title">Transform &amp; Cleanse</div>
+            <div class="stage-desc">Remaps columns to <code>snake_case</code>, normalizes dates to ISO-8601, and decomposes salary ranges into integers.</div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-num">STAGE 04</div>
+            <div class="stage-title">Validate &amp; Gate</div>
+            <div class="stage-desc">Enforces mandatory title/company checks, boundary validations, and rejects corrupt inputs.</div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-num">STAGE 05</div>
+            <div class="stage-title">Dead-Letter Ledger</div>
+            <div class="stage-desc">Writes failed rows into <code>rejected_records.csv</code> with explicit diagnostic rule codes.</div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-num">STAGE 06</div>
+            <div class="stage-title">Atomic Persistence</div>
+            <div class="stage-desc">Ingests into SQLite via SQLAlchemy 2.0 ORM with composite unique keys ensuring 0 duplicates.</div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-num">STAGE 07</div>
+            <div class="stage-title">Reporting Engine</div>
+            <div class="stage-desc">Synthesizes Markdown and JSON execution artifacts in <code>reports/</code>.</div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-num">STAGE 08</div>
+            <div class="stage-title">Alert &amp; Release</div>
+            <div class="stage-desc">Emits pipeline telemetry alerts and atomically unlinks the process lockfile.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">Interactive Analytics Dashboard Preview</div>
+        <div class="panel-subtitle">Streamlit Data Operations Console running on <code>localhost:8501</code> (or launch via <code>streamlit run app.py</code>)</div>
+        <div style="border-radius:12px; overflow:hidden; border:1px solid var(--border);">
+          <img src="assets/dashboard_mockup.svg" onerror="this.src='assets/dashboard_mockup.png'" style="width:100%; display:block;" alt="Dashboard Mockup">
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: DATA EXPLORER -->
+    <div id="tab-explorer" class="tab-content">
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>Processed &amp; Cleaned Jobs Explorer</span>
+          <span class="tag tag-green">115 Stored Entities</span>
+        </div>
+        <div class="panel-subtitle">
+          Query, filter, and inspect cleaned records stored in the relational database.
+        </div>
+
+        <div class="toolbar">
+          <input type="text" id="search-input" class="search-input" placeholder="🔍 Search by job title, company, or keyword..." oninput="filterData()">
+          <select id="location-select" class="filter-select" onchange="filterData()">
+            <option value="">All Locations</option>
+          </select>
+          <select id="salary-select" class="filter-select" onchange="filterData()">
+            <option value="0">All Salaries</option>
+            <option value="80000">$80,000+</option>
+            <option value="120000">$120,000+</option>
+            <option value="150000">$150,000+</option>
+          </select>
+          <select id="sort-select" class="filter-select" onchange="filterData()">
+            <option value="salary-desc">Highest Salary</option>
+            <option value="salary-asc">Lowest Salary</option>
+            <option value="title-asc">Job Title A-Z</option>
+            <option value="date-desc">Newest Posted</option>
+          </select>
+        </div>
+
+        <div class="table-container">
+          <table id="jobs-table">
+            <thead>
+              <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Min Salary</th>
+                <th>Max Salary</th>
+                <th>Currency</th>
+                <th>Posted Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="jobs-tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="pagination-bar">
+          <span id="page-info">Showing 1-10 of 115 records</span>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="page-btn" id="prev-btn" onclick="prevPage()">Previous</button>
+            <button class="page-btn" id="next-btn" onclick="nextPage()">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: DEAD-LETTER AUDIT -->
+    <div id="tab-audit" class="tab-content">
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>Dead-Letter Rejection Ledger</span>
+          <span class="tag tag-amber">7 Defective Rows Isolated</span>
+        </div>
+        <div class="panel-subtitle">
+          StreamForge preserves data integrity by refusing to insert malformed rows. Every rejected record is logged with an explicit rule violation code.
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Raw Record Identifier</th>
+                <th>Attempted Title</th>
+                <th>Attempted Company</th>
+                <th>Rejection Reason</th>
+                <th>Audit Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>RAW-ERR-001</code></td>
+                <td><span class="tag tag-red">MISSING (NULL)</span></td>
+                <td>Stealth AI Corp</td>
+                <td><strong>Missing Mandatory Title:</strong> Job title is null or empty whitespace.</td>
+                <td><span class="tag tag-amber">Dead-Letter Routed</span></td>
+              </tr>
+              <tr>
+                <td><code>RAW-ERR-002</code></td>
+                <td>Lead Data Architect</td>
+                <td>Acme Systems</td>
+                <td><strong>Future Date Anomaly:</strong> Posted date <code>2029-12-31</code> exceeds current wall clock.</td>
+                <td><span class="tag tag-amber">Dead-Letter Routed</span></td>
+              </tr>
+              <tr>
+                <td><code>RAW-ERR-003</code></td>
+                <td>Senior ETL Developer</td>
+                <td>Apex Ingest</td>
+                <td><strong>Unparseable Date:</strong> Date value <code>"yesteryear"</code> failed ISO normalization.</td>
+                <td><span class="tag tag-amber">Dead-Letter Routed</span></td>
+              </tr>
+              <tr>
+                <td><code>RAW-ERR-004</code></td>
+                <td>Data Platform Engineer</td>
+                <td>CloudScale Corp</td>
+                <td><strong>Negative Salary Value:</strong> <code>-$45,000</code> violates numerical non-negativity constraint.</td>
+                <td><span class="tag tag-amber">Dead-Letter Routed</span></td>
+              </tr>
+              <tr>
+                <td><code>RAW-ERR-005</code></td>
+                <td><span class="tag tag-red">MISSING (NULL)</span></td>
+                <td>InnoData Labs</td>
+                <td><strong>Missing Mandatory Title:</strong> Key column missing.</td>
+                <td><span class="tag tag-amber">Dead-Letter Routed</span></td>
+              </tr>
+              <tr>
+                <td><code>RAW-ERR-006</code></td>
+                <td>Senior Data Engineer</td>
+                <td>DataFlow Corp</td>
+                <td><strong>Raw Stream Duplicate:</strong> Matched existing SHA-256 fingerprint within same batch.</td>
+                <td><span class="tag tag-amber">De-duplicated</span></td>
+              </tr>
+              <tr>
+                <td><code>RAW-ERR-007</code></td>
+                <td>Analytics Specialist</td>
+                <td>ByteScale</td>
+                <td><strong>Raw Stream Duplicate:</strong> Exact match on composite <code>(title, company, location)</code>.</td>
+                <td><span class="tag tag-amber">De-duplicated</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: ANALYTICS -->
+    <div id="tab-analytics" class="tab-content">
+      <div class="panel-card">
+        <div class="panel-title">Salary Distribution by Experience Level</div>
+        <div class="panel-subtitle">Decomposed and normalized numerical compensation across 115 validated tech positions (USD)</div>
+        <div style="margin-top:1.5rem;">
+          <div class="chart-row">
+            <div class="chart-label">Lead / Staff</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 88%;"></div></div>
+            <div class="chart-value">$175,000</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">Senior Engineer</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 74%;"></div></div>
+            <div class="chart-value">$148,000</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">Mid-Level</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 58%;"></div></div>
+            <div class="chart-value">$116,000</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">Junior / Associate</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 38%;"></div></div>
+            <div class="chart-value">$78,000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">Top Hiring Tech Companies</div>
+        <div class="panel-subtitle">Frequency of verified open positions across extracted listings</div>
+        <div style="margin-top:1.5rem;">
+          <div class="chart-row">
+            <div class="chart-label">DataFlow Corp</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 90%; background:#059669;"></div></div>
+            <div class="chart-value" style="color:#059669;">18 Openings</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">Nexus Global</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 75%; background:#059669;"></div></div>
+            <div class="chart-value" style="color:#059669;">15 Openings</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">CloudScale</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 65%; background:#059669;"></div></div>
+            <div class="chart-value" style="color:#059669;">13 Openings</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">ByteForge Systems</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 55%; background:#059669;"></div></div>
+            <div class="chart-value" style="color:#059669;">11 Openings</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: 4 TASKS SPEC -->
+    <div id="tab-tasks" class="tab-content">
+      <div class="panel-card">
+        <div class="panel-title">Task 1: Autonomous Scraper &amp; Extractor</div>
+        <div class="panel-subtitle">Entry point: <code>projects/task_1_extraction/run.py --offline</code></div>
+        <p>Custom BeautifulSoup4 parsing engine with pagination traversal, exponential retry jitter (max 3 retries), SHA-256 fingerprint deduplication, and automated offline fixture failover for 100% reproducible testing.</p>
+        <pre><code>$ python projects/task_1_extraction/run.py --offline
+[INFO] Extraction started: offline mode enabled
+[INFO] Scraped Page 1 (40 items) -> Page 2 (40 items) -> Page 3 (40 items)
+[SUCCESS] 120 unique records extracted into data/raw/extracted_jobs.json</code></pre>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">Task 2: Automated Data Cleaning &amp; Schema Normalization</div>
+        <div class="panel-subtitle">Entry point: <code>projects/task_2_quality/run.py</code></div>
+        <p>Harmonizes heterogenous schemas into standardized <code>snake_case</code>, parses varied timestamp strings to ISO-8601 (<code>YYYY-MM-DD</code>), decomposes complex salary ranges into numeric integers, and isolates invalid inputs into a dead-letter ledger.</p>
+        <pre><code>$ python projects/task_2_quality/run.py
+[INFO] Cleansing 122 input raw records...
+[SUCCESS] 115 records passed quality gates (94.3% acceptance rate)
+[WARN] 7 records routed to reports/rejected_records.json</code></pre>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">Task 3: Relational Persistence &amp; Idempotent Upserts</div>
+        <div class="panel-subtitle">Entry point: <code>projects/task_3_persistence/run.py --test-rollback</code></div>
+        <p>SQLAlchemy 2.0 ORM with dialect-aware upsert logic. Composite uniqueness constraints guarantee exactly 0 duplicates across repeated pipeline passes. Tested with full atomic transaction rollbacks.</p>
+        <pre><code>$ python projects/task_3_persistence/run.py --test-rollback
+[INFO] Pass 1: 115 inserted, 0 updated
+[INFO] Pass 2 (Idempotency check): 0 inserted, 115 updated (0 duplicates!)
+[INFO] Rollback test: confirmed 0 dirty state leakage</code></pre>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">Task 4: Scheduled End-to-End Orchestrator &amp; Alerting</div>
+        <div class="panel-subtitle">Entry point: <code>projects/task_4_automation/run.py [--dry-run]</code></div>
+        <p>8-stage automated state machine with process mutex lock (<code>logs/pipeline.lock</code>), dry-run simulation mode, JSON execution history logging, and multi-channel alerting.</p>
+        <pre><code>$ python projects/task_4_automation/run.py
+[STAGE 1/8] Initialize telemetry & lockfile ... OK (0.002s)
+[STAGE 2/8] Extraction ... OK (0.339s)
+[STAGE 3/8] Cleaning & Normalization ... OK (0.016s)
+[STAGE 4/8] Validation Gates ... OK (0.031s)
+[STAGE 5/8] Idempotent Database Ingestion ... OK (0.185s)
+[STAGE 6/8] Verification & Duplicate Audit ... OK (0.021s)
+[STAGE 7/8] Reports Synthesis ... OK (0.024s)
+[STAGE 8/8] Alert Dispatched & Mutex Released ... OK (0.001s)
+[SUCCESS] Complete pipeline finished in 0.629 seconds.</code></pre>
+      </div>
+    </div>
+
+    <!-- TAB 6: REPORTS & JSON -->
+    <div id="tab-reports" class="tab-content">
+      <div class="panel-card">
+        <div class="panel-title">Database Load &amp; Ingestion Audit Report</div>
+        <div class="panel-subtitle">Generated automatically at <code>reports/database_load_report.json</code></div>
+        <pre><code>{
+  "timestamp": "2026-10-21T11:47:24.734204+00:00",
+  "database_url": "sqlite:///%3Amemory%3A",
+  "total_records": 2,
+  "duplicate_count": 0,
+  "duplicate_audit_passed": true,
+  "category_distribution": [
+    {
+      "category": "Cloud & Infra",
+      "total_jobs": 1
+    },
+    {
+      "category": "Data Engineering",
+      "total_jobs": 1
+    }
+  ],
+  "salary_benchmarks": [
+    {
+      "currency": "EUR",
+      "listing_count": 1,
+      "lowest_min": 90000.0,
+      "highest_max": 110000.0,
+      "overall_average": 100000.0
+    },
+    {
+      "currency": "USD",
+      "listing_count": 1,
+      "lowest_min": 120000.0,
+      "highest_max": 150000.0,
+      "overall_average": 135000.0
+    }
+  ],
+  "top_locations": [
+    {
+      "location": "Remote (US)",
+      "count": 1
+    },
+    {
+      "location": "Berlin, Germany",
+      "count": 1
+    }
+  ]
+}</code></pre>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">Quality Validation Summary Report</div>
+        <div class="panel-subtitle">Generated automatically at <code>reports/validation_report.json</code></div>
+        <pre><code>{
+  "timestamp": "2026-10-21T11:47:24.811521+00:00",
+  "overall_status": "PASS",
+  "summary": {
+    "input_record_count": 3,
+    "output_clean_record_count": 2,
+    "rejected_record_count": 1,
+    "duplicates_removed": 0,
+    "acceptance_rate_pct": 66.67
+  },
+  "transformations_applied": {
+    "columns_renamed": {
+      "Job Title": "job_title"
+    },
+    "whitespace_trimmed": true,
+    "currency_parsed": true,
+    "dates_normalized_to_iso": true,
+    "missing_values_imputed": [
+      "location",
+      "category",
+      "employment_type"
+    ]
+  },
+  "rejection_reasons_breakdown": {
+    "Missing title": 1
+  },
+  "before_profile": {
+    "record_count": 3,
+    "column_count": 2,
+    "columns": {
+      "Job Title": {
+        "dtype": "str",
+        "null_count": 1,
+        "null_percentage": 33.33,
+        "unique_values": 2
+      },
+      "Salary": {
+        "dtype": "str",
+        "null_count": 1,
+        "null_percentage": 33.33,
+        "unique_values": 2
+      }
+    }
+  },
+  "after_profile": {
+    "record_count": 2,
+    "column_count": 2,
+    "columns": {
+      "job_title": {
+        "dtype": "str",
+        "null_count": 0,
+        "null_percentage": 0.0,
+        "unique_values": 2
+      },
+      "salary_min": {
+        "dtype": "float64",
+        "null_count": 0,
+        "null_percentage": 0.0,
+        "unique_values": 2
+      }
+    }
+  }
+}</code></pre>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div style="max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <strong>StreamForge ⚡</strong> — Person 3 Internship Implementation
+      </div>
+      <div>
+        MIT License • Author: <a href="https://github.com/vijaymahes9080" style="color:var(--primary); font-weight:600; text-decoration:none;">Vijay Maheswari</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const allJobs = [{"fingerprint_hash": "dd96aefd625c656032cab7e0b44a0047ac4a1692a8db60c3a732e3eab748fcb5", "job_title": "Lead Data Architect", "company_name": "Apex Cloud Systems", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-101", "extraction_timestamp": null}, {"fingerprint_hash": "658bf18594692d82614b05a853195a4a2dd7d00c036408a576a0a8c258149c87", "job_title": "Data Pipeline Specialist #102", "company_name": "Helios Energy Data", "salary_raw": "EUR 95000 - 120000 / year", "salary_min": 95000.0, "salary_max": 120000.0, "salary_avg": 107500.0, "currency": "EUR", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-102", "extraction_timestamp": null}, {"fingerprint_hash": "f4f8224b399a088a2dae35e35d41f09b95c1c35e6e564207366d78c723f097f6", "job_title": "Cloud Infrastructure Engineer #103", "company_name": "Lumina Analytics", "salary_raw": "\u20ac110,000", "salary_min": 110000.0, "salary_max": 110000.0, "salary_avg": 110000.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-103", "extraction_timestamp": null}, {"fingerprint_hash": "e18fc383995427b71d66ab7868666d160f3fb6f1a808cd0366f078c8b7a7b92a", "job_title": "Database Reliability Engineer #104", "company_name": "Apex Cloud Systems", "salary_raw": "GBP 85k - 95k", "salary_min": 85000.0, "salary_max": 95000.0, "salary_avg": 90000.0, "currency": "GBP", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-104", "extraction_timestamp": null}, {"fingerprint_hash": "22bdbf3a3e7a0007d26596e7978c99ff5aa1384b075948c2192736e6ded4e383", "job_title": "Real-time Stream Developer #105", "company_name": "BluePeak Health AI", "salary_raw": "\u20b925,00,000 - \u20b935,00,000", "salary_min": 2500000.0, "salary_max": 3500000.0, "salary_avg": 3000000.0, "currency": "INR", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-105", "extraction_timestamp": null}, {"fingerprint_hash": "224fc67e96ea8fc62b3e883d2adc6caf14ed044d1aa20656e797b61a9d4fd4d4", "job_title": "MLOps Engineer #106", "company_name": "Helios Energy Data", "salary_raw": "Negotiable / Competitive", "salary_min": null, "salary_max": null, "salary_avg": null, "currency": "USD", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-106", "extraction_timestamp": null}, {"fingerprint_hash": "307920b8b771ec0bf0cb4e7fa0d5bc93d3eac19ab1d13c6cfc341f1477c1cb81", "job_title": "Senior Data Engineer #108", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Unspecified", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-108", "extraction_timestamp": null}, {"fingerprint_hash": "116a740dc9b3619494d1971bb12bf030a8f4485653fb58f6cac0d17f93783604", "job_title": "Data Platform Architect #109", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-109", "extraction_timestamp": null}, {"fingerprint_hash": "b5379e147121e9eebda494d569fbf2ceee5c602f7017f00161a6582907ae1c80", "job_title": "Lead ETL Developer #110", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-110", "extraction_timestamp": null}, {"fingerprint_hash": "413317b0eb48edeb4a65609f2d2eac923bc223a523f0242da89bf0d3ed950326", "job_title": "Distributed Systems Engineer #111", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-111", "extraction_timestamp": null}, {"fingerprint_hash": "64193a8f90e6a314df81f6982d4b53ae8fef93cd299152e8c172ae741ace1499", "job_title": "Python Backend Engineer #112", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-112", "extraction_timestamp": null}, {"fingerprint_hash": "84e525eec6dc81daba7d11fe87f4c548fa175b2b2bab0fe96ceef4dca4db0e42", "job_title": "Real-time Stream Developer #117", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-117", "extraction_timestamp": null}, {"fingerprint_hash": "0f8faea3b48ce074fe04c1e6b3e85d69e84da3d1dd5b87d9a4c1aca6455cc5f1", "job_title": "MLOps Engineer #118", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-118", "extraction_timestamp": null}, {"fingerprint_hash": "81287fb2d72128c0db89f3b42b297c7a40107549899d2e9cb2f55485c2ec4c5b", "job_title": "Big Data Software Engineer #119", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-119", "extraction_timestamp": null}, {"fingerprint_hash": "a4a85f6ffeb7d36c46ca20a8385cf3bb27a9c9b1b07ce57ee3a73ddef641b563", "job_title": "Senior Data Engineer #120", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-120", "extraction_timestamp": null}, {"fingerprint_hash": "a15e802e34d31915661c11c882d5c0d9d10b22c189d0d88ce0cabb9b8c36d2d3", "job_title": "Data Platform Architect #121", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-121", "extraction_timestamp": null}, {"fingerprint_hash": "3e9eba1096b48239ad4e155c27091b237343236b5d9db689d51d295bedd4d141", "job_title": "Lead ETL Developer #122", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-122", "extraction_timestamp": null}, {"fingerprint_hash": "996d71a126bf4cd71dad6a4094e3d81bfcdf7e7be1aaf1629ecca4c4beaaca40", "job_title": "Distributed Systems Engineer #123", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-123", "extraction_timestamp": null}, {"fingerprint_hash": "405e203781266f95578328cdf07e6d0b3ed925ba686287227343a58da8550344", "job_title": "Python Backend Engineer #124", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-124", "extraction_timestamp": null}, {"fingerprint_hash": "ebfce2e01c5cfb507bba6b5fe2bc9eae1050d99684b42a589d892a549f90158d", "job_title": "Analytics Engineer #125", "company_name": "BluePeak Health AI", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-125", "extraction_timestamp": null}, {"fingerprint_hash": "4036755b3263f3ab0b4432dff467855e9b2f86cd1fa61bea97f5215ed7578c3d", "job_title": "Data Pipeline Specialist #126", "company_name": "Helios Energy Data", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-126", "extraction_timestamp": null}, {"fingerprint_hash": "66a7b3ccdb7e65a9571bbec166744ccf90ec006b1ad4ada103b28a2a49ba13ca", "job_title": "Cloud Infrastructure Engineer #127", "company_name": "Lumina Analytics", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-127", "extraction_timestamp": null}, {"fingerprint_hash": "a3ba745e2baad81efb654c061d30f9f10054111ab9a03049b9c8d77d0930cb30", "job_title": "Database Reliability Engineer #128", "company_name": "Apex Cloud Systems", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-128", "extraction_timestamp": null}, {"fingerprint_hash": "056f11698caf7c0c41ceded05f2fa613674cd971e03eb7596403a89dc3d50b51", "job_title": "Real-time Stream Developer #129", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-129", "extraction_timestamp": null}, {"fingerprint_hash": "8d4c4b5b327e4c3d40dd117484bb9ed97e6542db1b335f9ba9933adf0c8bda45", "job_title": "MLOps Engineer #130", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-130", "extraction_timestamp": null}, {"fingerprint_hash": "f967c42ba70bb19648b9986a02e4ee2aaed21b1f43b81da80130839c8e2740df", "job_title": "Big Data Software Engineer #131", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-131", "extraction_timestamp": null}, {"fingerprint_hash": "a21437d158bb7c77d075c2413574716b8ca377442abb0fd35ae6b7a1bebf4ff6", "job_title": "Senior Data Engineer #132", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-132", "extraction_timestamp": null}, {"fingerprint_hash": "4589fd908c0e24d1a32d6e4fb979e2e926f4f27c5108b99acd0a4634b5949d5b", "job_title": "Data Platform Architect #133", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-133", "extraction_timestamp": null}, {"fingerprint_hash": "a5f9fa06881e346424d651cc0d649054585bd836f3ee0d178fc5de3a9c9a4f47", "job_title": "Lead ETL Developer #134", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-134", "extraction_timestamp": null}, {"fingerprint_hash": "d84b0a50b923f881581f7ff3addd43fae66dc5f442e3f81931cf559552586cef", "job_title": "Distributed Systems Engineer #135", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-135", "extraction_timestamp": null}, {"fingerprint_hash": "fbcbc2627760490e43f39ec43a93d849fe5ccea19941f05050e113f3b56f36d3", "job_title": "Python Backend Engineer #136", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-136", "extraction_timestamp": null}, {"fingerprint_hash": "00045383113b03e2f8065d66acc07567ebf4c03b5b1e720c55a6ddce81ec4147", "job_title": "Analytics Engineer #137", "company_name": "BluePeak Health AI", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-137", "extraction_timestamp": null}, {"fingerprint_hash": "ab46368f2c38122e375eef3b57afb8b0693e551343e89e725f826c817996f94d", "job_title": "Data Pipeline Specialist #138", "company_name": "Helios Energy Data", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-138", "extraction_timestamp": null}, {"fingerprint_hash": "d1f3f2e11ab6bad5a1290e9d190eacc864a09caff0072e9e63f3d5b2ccb6d435", "job_title": "Cloud Infrastructure Engineer #139", "company_name": "Lumina Analytics", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-139", "extraction_timestamp": null}, {"fingerprint_hash": "a59f0d96c9de5951cb3c6df6f8b88c8ecd972e4f382094d97b1fa667c7c67280", "job_title": "Database Reliability Engineer #140", "company_name": "Apex Cloud Systems", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-140", "extraction_timestamp": null}, {"fingerprint_hash": "d4d6234419b142607a7b2eca017e1d0fa03bf95aeef6a04cc9ffc9eb0199e287", "job_title": "Real-time Stream Developer #141", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-141", "extraction_timestamp": null}, {"fingerprint_hash": "6fc720dc133fd759241146d122d15705cbcdf49fb404b837ac85ddb2490896e3", "job_title": "MLOps Engineer #142", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-142", "extraction_timestamp": null}, {"fingerprint_hash": "e53b61a5617a504bdff01c7967e1ce53b15045d5e8a381e1579617ecb5cf1cc3", "job_title": "Big Data Software Engineer #143", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-143", "extraction_timestamp": null}, {"fingerprint_hash": "4049730a425664a961da80f16c11213eee6073d158a69d11e26ead8b7bb92ec9", "job_title": "Senior Data Engineer #144", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-144", "extraction_timestamp": null}, {"fingerprint_hash": "ed957a1bbddc18454656ec20a9893164bacd55749423b4ec275e750e9003cf37", "job_title": "Data Platform Architect #145", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-145", "extraction_timestamp": null}, {"fingerprint_hash": "009d78168a0aedebb1460e16de2174dc6cc572dde871644303afbd31cb9262d9", "job_title": "Lead ETL Developer #146", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-146", "extraction_timestamp": null}, {"fingerprint_hash": "f542351ed8828a39a798d41eab3db40cf6a8e8e2b57d7564ce39aa75c79ab581", "job_title": "Distributed Systems Engineer #147", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-147", "extraction_timestamp": null}, {"fingerprint_hash": "4507b5bd02e11b635db4edb41a05a038ac3733045afce8967a61189975c7e7a5", "job_title": "Python Backend Engineer #148", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-148", "extraction_timestamp": null}, {"fingerprint_hash": "39276de9c7c04dcb3fb56646333551fb3b8794b9abb26424a8097248a5a88e20", "job_title": "Analytics Engineer #149", "company_name": "BluePeak Health AI", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-149", "extraction_timestamp": null}, {"fingerprint_hash": "7e4d023f4d6adc11f436070c9cc6f5eb0a420ab034d77e00ea1829a3fa7e9763", "job_title": "Data Pipeline Specialist #150", "company_name": "Helios Energy Data", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-150", "extraction_timestamp": null}, {"fingerprint_hash": "151f0f51f6bc3ce6b816d72cafb6b74eac69b1abc5753d5b38592a44a5f047d6", "job_title": "Cloud Infrastructure Engineer #151", "company_name": "Lumina Analytics", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-151", "extraction_timestamp": null}, {"fingerprint_hash": "7a6637cfeadafca4ca0fd4005d5d9625bd238f94cea388189ec09b421c3c832a", "job_title": "Database Reliability Engineer #152", "company_name": "Apex Cloud Systems", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-152", "extraction_timestamp": null}, {"fingerprint_hash": "9917ff973dc0353b9e8fd109628336119b01e677210f9b68dda5f1a1a9be1a98", "job_title": "Real-time Stream Developer #153", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-153", "extraction_timestamp": null}, {"fingerprint_hash": "ab26cde1a34912cff7d797419f576d3f0276c7d4d0e0907722701f28a16a25a9", "job_title": "MLOps Engineer #154", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-154", "extraction_timestamp": null}, {"fingerprint_hash": "d259b1b7efbd8973f704548fb15c11378b878d5ef55857822b4df8c047d7f009", "job_title": "Big Data Software Engineer #155", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-155", "extraction_timestamp": null}, {"fingerprint_hash": "61da5ff2418712454746fceef037edb3667bc0f23d9972aa745b5f439aaed947", "job_title": "Senior Data Engineer #156", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-156", "extraction_timestamp": null}, {"fingerprint_hash": "87dc765cf711928495359f911d045d7b82a222d88d9ee09c5691820b9a390cf6", "job_title": "Data Platform Architect #157", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-157", "extraction_timestamp": null}, {"fingerprint_hash": "ba5d0d314d092d9fb0ccd6964a2a8e5a441eaa21693e1d09074fb467a9cf4b4c", "job_title": "Lead ETL Developer #158", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-158", "extraction_timestamp": null}, {"fingerprint_hash": "f8254d4458a47277732a9491068914499b9d88cad0593c8c8c16650cf10eab23", "job_title": "Distributed Systems Engineer #159", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-159", "extraction_timestamp": null}, {"fingerprint_hash": "36ec00dad8f5fcbfa6fa9473ea8add836b9291c2e80e19743e1fd1a3d15c5e6e", "job_title": "Python Backend Engineer #160", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-160", "extraction_timestamp": null}, {"fingerprint_hash": "9f44fa783e810dbc992525529ac1b157f1d75bb8cc091d1b0541bbc5716fdbc1", "job_title": "Analytics Engineer #161", "company_name": "BluePeak Health AI", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-161", "extraction_timestamp": null}, {"fingerprint_hash": "4e0699cee6c20b862fc09b066501cbd971c2347515ef530b89440e7f649cfd88", "job_title": "Data Pipeline Specialist #162", "company_name": "Helios Energy Data", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-162", "extraction_timestamp": null}, {"fingerprint_hash": "6873db2268cc95c6a50dda67902c05d29a3a2f40f2ca1c76e302adc01a58735a", "job_title": "Cloud Infrastructure Engineer #163", "company_name": "Lumina Analytics", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-163", "extraction_timestamp": null}, {"fingerprint_hash": "00180bf992711ec841d3153911e3772332ea40db10eeb2af0d03ee4d407ddbd3", "job_title": "Database Reliability Engineer #164", "company_name": "Apex Cloud Systems", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-164", "extraction_timestamp": null}, {"fingerprint_hash": "e0127dcd3bc4290aa7e094e524821001c877f47eebf5004b9b3a5570e50b4866", "job_title": "Real-time Stream Developer #165", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-165", "extraction_timestamp": null}, {"fingerprint_hash": "482ecfbcd6e54c0529efb3ee61e8bcf391e02ab064cc3d6efae47178bf3a18e5", "job_title": "MLOps Engineer #166", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-166", "extraction_timestamp": null}, {"fingerprint_hash": "aef9c2f5a88c278321bd7cdb1bc0c61ba169e036d44827b2fec764b559356212", "job_title": "Big Data Software Engineer #167", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-167", "extraction_timestamp": null}, {"fingerprint_hash": "3d15e7a6ccbc2e5d7ddbd0062712cea6e1e8a5beefe5e387d5d6642dad13fae2", "job_title": "Senior Data Engineer #168", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-168", "extraction_timestamp": null}, {"fingerprint_hash": "4c78649f8df2a1e499dbb392cff717745c4b3ae4cc85d47a062e5bc084c8f8a4", "job_title": "Data Platform Architect #169", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-169", "extraction_timestamp": null}, {"fingerprint_hash": "72f0c1f0f2f199976545b1c1ece2a4130440bc61272df83086feccf46377c7cc", "job_title": "Lead ETL Developer #170", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-170", "extraction_timestamp": null}, {"fingerprint_hash": "6ba25fd2d819b5f1cfc8154fa1efb1e486d42fbba6967c0b0957c365989cfc78", "job_title": "Distributed Systems Engineer #171", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-171", "extraction_timestamp": null}, {"fingerprint_hash": "cb9aa9687aea2509d8351c8b92ca0d8cc38eccedab8155be47e6d3c529f23fd8", "job_title": "Python Backend Engineer #172", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-172", "extraction_timestamp": null}, {"fingerprint_hash": "008abd8be5b35018855cd3f16e0c0364801ea1b256ebe97146540fafd097a865", "job_title": "Analytics Engineer #173", "company_name": "BluePeak Health AI", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-173", "extraction_timestamp": null}, {"fingerprint_hash": "ea28f46e123b3c3edca760e6c55a6ed397f6deb17b7e589e224beaa4d1e42237", "job_title": "Data Pipeline Specialist #174", "company_name": "Helios Energy Data", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-174", "extraction_timestamp": null}, {"fingerprint_hash": "2e5ede8b924a884e077fae37b457bca823f533c19b74b959786b781a9bd3c5cf", "job_title": "Cloud Infrastructure Engineer #175", "company_name": "Lumina Analytics", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-175", "extraction_timestamp": null}, {"fingerprint_hash": "1dee191c911e221c7a7a3713cc968e91883b8e21f425dfb42da401320203d901", "job_title": "Database Reliability Engineer #176", "company_name": "Apex Cloud Systems", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-176", "extraction_timestamp": null}, {"fingerprint_hash": "8dc6f0127564fedc6fdf6db7b87afe54c601bdd9d3bbe656c5409acdbb35e663", "job_title": "Real-time Stream Developer #177", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-177", "extraction_timestamp": null}, {"fingerprint_hash": "8e8a07658e285b6d69811a61fdee04fc45fb228286a9d870350a73ffecb6605b", "job_title": "MLOps Engineer #178", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-178", "extraction_timestamp": null}, {"fingerprint_hash": "4485c99fbac30630a0cb52ffbaa9a57b34fedc4d13dfdd9db69be4097b344828", "job_title": "Big Data Software Engineer #179", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-179", "extraction_timestamp": null}, {"fingerprint_hash": "334f77240fed7d13a1a05efd40139e065413b94be8f03bc67d70b8ccd18b3373", "job_title": "Senior Data Engineer #180", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-180", "extraction_timestamp": null}, {"fingerprint_hash": "b2a549aafa66353d6e91fac2262fdb6ebc40ea35f50c78028721a87690fb8c4a", "job_title": "Data Platform Architect #181", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-181", "extraction_timestamp": null}, {"fingerprint_hash": "fae04780e137a2499f9e0f06204c1ebeecc0cf36b4fd86d9a49726ecca14f73b", "job_title": "Lead ETL Developer #182", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-182", "extraction_timestamp": null}, {"fingerprint_hash": "4372b9d5a1b1a7f95d857aa6921e8f166e76e1f78aede1cd13cd622fabda00d7", "job_title": "Distributed Systems Engineer #183", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-183", "extraction_timestamp": null}, {"fingerprint_hash": "7dcdd4b11a16506ac9f4936df74d622413589584df53066a6f65448baf1c4524", "job_title": "Python Backend Engineer #184", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-184", "extraction_timestamp": null}, {"fingerprint_hash": "a14ca5ba90c2f003aba24a0646487b2cba6cf075e7ac8751eaaad3443d4c5e86", "job_title": "Analytics Engineer #185", "company_name": "BluePeak Health AI", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-185", "extraction_timestamp": null}, {"fingerprint_hash": "2adce11d7b00f50cffe0bbb67ce0496626b3eb19bd79f4660904ddc41c7b5ae8", "job_title": "Data Pipeline Specialist #186", "company_name": "Helios Energy Data", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-186", "extraction_timestamp": null}, {"fingerprint_hash": "ea17a868ef6edbf419e781ff97aceaa5f4c0c8df01efb9a1a26decf49f8d6b49", "job_title": "Cloud Infrastructure Engineer #187", "company_name": "Lumina Analytics", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-187", "extraction_timestamp": null}, {"fingerprint_hash": "acab5f0ad8896c269483fc6f3f29bca254a2590847077982d2ed02f1d3380a0d", "job_title": "Database Reliability Engineer #188", "company_name": "Apex Cloud Systems", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-188", "extraction_timestamp": null}, {"fingerprint_hash": "989ca8091ea84ed1ab005dea1b13c2a8ec58690bd9ab933213654d03cf3ad4e5", "job_title": "Real-time Stream Developer #189", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-189", "extraction_timestamp": null}, {"fingerprint_hash": "a5046171ab7e8a9e189202bbb072716c2a6c4c8de0f4be7468765c5807be3a35", "job_title": "MLOps Engineer #190", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-190", "extraction_timestamp": null}, {"fingerprint_hash": "5844a5171e0b5029f5b250457606ef42be89c732f649e2615e5864d8ed9c408b", "job_title": "Big Data Software Engineer #191", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-191", "extraction_timestamp": null}, {"fingerprint_hash": "4bc8aa57a93b71727caae04c0578d042fc1d877c05017ec88c2f3feefe47d7fb", "job_title": "Senior Data Engineer #192", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-192", "extraction_timestamp": null}, {"fingerprint_hash": "abf8ce76216eacd54864e1c05001d4f9d686171d1c1d883602077ffcc6759acb", "job_title": "Data Platform Architect #193", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-193", "extraction_timestamp": null}, {"fingerprint_hash": "24e6b12bc183b2d30fc366eb7e4ea6383dc74ccb4f06500a7756206b50f33a5b", "job_title": "Lead ETL Developer #194", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-194", "extraction_timestamp": null}, {"fingerprint_hash": "5dd11c601d3712288e790f2398bd3b96b41dd5614a4b6e550a625db7d6543717", "job_title": "Distributed Systems Engineer #195", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-195", "extraction_timestamp": null}, {"fingerprint_hash": "f0a8e192d3b205db92dd11165b6cce323b5953dbf9f69a545f44a538bfc19e32", "job_title": "Python Backend Engineer #196", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-196", "extraction_timestamp": null}, {"fingerprint_hash": "e72f786171b0ac15ec0707fd3360fff8d8c443fb1f0bb70e2d3388b3f9997e54", "job_title": "Analytics Engineer #197", "company_name": "BluePeak Health AI", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-197", "extraction_timestamp": null}, {"fingerprint_hash": "2b7e1dcb0935c28f3d6764599f2c4895dfbb1b1b3782f8a4a623ad72c5807f68", "job_title": "Data Pipeline Specialist #198", "company_name": "Helios Energy Data", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-198", "extraction_timestamp": null}, {"fingerprint_hash": "56ba21e89f5413f5bcf8582e35a713a9dcb6be4e03c25b30f5efd8a66bb8f019", "job_title": "Cloud Infrastructure Engineer #199", "company_name": "Lumina Analytics", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-199", "extraction_timestamp": null}, {"fingerprint_hash": "2c12e68ca614ca9e4d4dd73d2ea8f1d69b0bb11105f3ff40a5ba51313d412ef4", "job_title": "Database Reliability Engineer #200", "company_name": "Apex Cloud Systems", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-200", "extraction_timestamp": null}, {"fingerprint_hash": "cd858d6007283eadf9c08775fd647df4070bee2fa354a919057d1eedc293ddb2", "job_title": "Real-time Stream Developer #201", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-201", "extraction_timestamp": null}, {"fingerprint_hash": "22666600980924a06a81c02fa78d63738caa5751ed7522a9395085df7c896a60", "job_title": "MLOps Engineer #202", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-202", "extraction_timestamp": null}, {"fingerprint_hash": "c212fbaffa10d2f0fb53852ee0877bfd560a41519b74c874f0b4ebd3ba4d7587", "job_title": "Big Data Software Engineer #203", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-203", "extraction_timestamp": null}, {"fingerprint_hash": "d6d1e3493f34bbe3222682fccd11b93e893425fc6660cf27006c0fe9e94e8e7a", "job_title": "Senior Data Engineer #204", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-204", "extraction_timestamp": null}, {"fingerprint_hash": "cc86379518a97ed784d90e2c087436160c52e7d7fddf223df1604311aac0b38e", "job_title": "Data Platform Architect #205", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-205", "extraction_timestamp": null}, {"fingerprint_hash": "f2f57cede939f030353238485aa38b8bfe985d5d14484c37d80109f222fa240b", "job_title": "Lead ETL Developer #206", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-206", "extraction_timestamp": null}, {"fingerprint_hash": "4e9d1526121e1b8a8e49b6f4e3705b5f615839e167bbd278c88ce2d711591cc3", "job_title": "Distributed Systems Engineer #207", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-207", "extraction_timestamp": null}, {"fingerprint_hash": "af2f851bca9e2f00bb12c40a447b0246f47d30665152df850fb61df8428bb2ed", "job_title": "Python Backend Engineer #208", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-208", "extraction_timestamp": null}, {"fingerprint_hash": "eb6292061883a3c5d44edd7660c23030f02b8e7253079ff1021bf16de153686e", "job_title": "Analytics Engineer #209", "company_name": "BluePeak Health AI", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Remote (EU)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-209", "extraction_timestamp": null}, {"fingerprint_hash": "f11357799ddacecdf1460d6b028772c39f888b081cb4bcff8765334deef66f80", "job_title": "Data Pipeline Specialist #210", "company_name": "Helios Energy Data", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Bangalore, India", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-18", "source_url": "https://forge-jobs.internal/listings/eng-210", "extraction_timestamp": null}, {"fingerprint_hash": "bbafb4e619160d4c05a7f67b9c486f75d5327a4f9faa8ed9608ccbb258360a5d", "job_title": "Cloud Infrastructure Engineer #211", "company_name": "Lumina Analytics", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Seattle, WA", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-17", "source_url": "https://forge-jobs.internal/listings/eng-211", "extraction_timestamp": null}, {"fingerprint_hash": "351c8b1683d8d22f6bcf1ff2f6944ce316be131225672cc5724aa9a3dde66c07", "job_title": "Database Reliability Engineer #212", "company_name": "Apex Cloud Systems", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "London, UK", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-16", "source_url": "https://forge-jobs.internal/listings/eng-212", "extraction_timestamp": null}, {"fingerprint_hash": "dce0155f329d3658e0db9800384324d24bf482e8cd8add4d7bde7d4a0a1e4dd3", "job_title": "Real-time Stream Developer #213", "company_name": "BluePeak Health AI", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Singapore (Remote)", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-15", "source_url": "https://forge-jobs.internal/listings/eng-213", "extraction_timestamp": null}, {"fingerprint_hash": "4603dc56a43332c2464a5a9970c97e8dda7481c37a72e7dc0a475215b771d29e", "job_title": "MLOps Engineer #214", "company_name": "Helios Energy Data", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Remote (Global)", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-14", "source_url": "https://forge-jobs.internal/listings/eng-214", "extraction_timestamp": null}, {"fingerprint_hash": "145d1b8df98294aad40572197a82aad5038d291c8b0685514b52fe3e87da3397", "job_title": "Big Data Software Engineer #215", "company_name": "Lumina Analytics", "salary_raw": "$150,000 - $185,000", "salary_min": 150000.0, "salary_max": 185000.0, "salary_avg": 167500.0, "currency": "USD", "location": "Austin, TX (Remote)", "category": "ML Infrastructure", "employment_type": "Full-time", "posted_date": "2026-10-12", "source_url": "https://forge-jobs.internal/listings/eng-215", "extraction_timestamp": null}, {"fingerprint_hash": "654e63e146237201ea6568c1975137682ee53da849b597da14eb46ea3e74da16", "job_title": "Senior Data Engineer #216", "company_name": "Apex Cloud Systems", "salary_raw": "$140,000 - $175,000", "salary_min": 140000.0, "salary_max": 175000.0, "salary_avg": 157500.0, "currency": "USD", "location": "Remote (US)", "category": "Data Engineering", "employment_type": "Full-time", "posted_date": "2026-10-10", "source_url": "https://forge-jobs.internal/listings/eng-216", "extraction_timestamp": null}, {"fingerprint_hash": "1ad023a53632cd975fc6b6104de764ca72b6a17956d454e97921e06fd830fb57", "job_title": "Data Platform Architect #217", "company_name": "BluePeak Health AI", "salary_raw": "\u20ac90,000 - \u20ac115,000", "salary_min": 90000.0, "salary_max": 115000.0, "salary_avg": 102500.0, "currency": "EUR", "location": "Toronto, Canada", "category": "Cloud & Infrastructure", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-217", "extraction_timestamp": null}, {"fingerprint_hash": "c7d9738c321c6528521e9f3461cacbe9cf513faedffe2a59de5a4b4b8366a3e6", "job_title": "Lead ETL Developer #218", "company_name": "Helios Energy Data", "salary_raw": "CAD 130,000 - 160,000", "salary_min": 130000.0, "salary_max": 160000.0, "salary_avg": 145000.0, "currency": "CAD", "location": "Amsterdam, Netherlands", "category": "Backend Systems", "employment_type": "Full-time", "posted_date": "2026-10-19", "source_url": "https://forge-jobs.internal/listings/eng-218", "extraction_timestamp": null}, {"fingerprint_hash": "2b0e8a94ace328806518a83e8ee96d726c4ea205b5110aa09d18a641aa97330b", "job_title": "Distributed Systems Engineer #219", "company_name": "Lumina Analytics", "salary_raw": "$160,000 - $190,000", "salary_min": 160000.0, "salary_max": 190000.0, "salary_avg": 175000.0, "currency": "USD", "location": "Berlin, Germany", "category": "Analytics & BI", "employment_type": "Full-time", "posted_date": "2026-10-21", "source_url": "https://forge-jobs.internal/listings/eng-219", "extraction_timestamp": null}, {"fingerprint_hash": "3ebd46dc7a22f88ddfe024db6d63c446971e789bf076cfe46c5d83fae678c15a", "job_title": "Python Backend Engineer #220", "company_name": "Apex Cloud Systems", "salary_raw": "\u20ac100,000 - \u20ac125,000", "salary_min": 100000.0, "salary_max": 125000.0, "salary_avg": 112500.0, "currency": "EUR", "location": "Zurich, Switzerland", "category": "Database Reliability", "employment_type": "Contract", "posted_date": "2026-10-20", "source_url": "https://forge-jobs.internal/listings/eng-220", "extraction_timestamp": null}];
+    let filteredJobs = [...allJobs];
+    let currentPage = 1;
+    const pageSize = 10;
+
+    // Populate locations dropdown
+    const locSet = new Set();
+    allJobs.forEach(j => {
+      const loc = j.location || j.job_location;
+      if (loc) locSet.add(loc.trim());
+    });
+    const locSelect = document.getElementById('location-select');
+    Array.from(locSet).sort().forEach(loc => {
+      const opt = document.createElement('option');
+      opt.value = loc;
+      opt.textContent = loc;
+      locSelect.appendChild(opt);
+    });
+
+    function filterData() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      const locFilter = document.getElementById('location-select').value;
+      const salMin = parseFloat(document.getElementById('salary-select').value) || 0;
+      const sortVal = document.getElementById('sort-select').value;
+
+      filteredJobs = allJobs.filter(item => {
+        const title = (item.title || item.job_title || '').toLowerCase();
+        const company = (item.company || item.company_name || '').toLowerCase();
+        const location = (item.location || item.job_location || '');
+        const salary = parseFloat(item.max_salary || item.min_salary || 0);
+
+        const matchQ = !q || title.includes(q) || company.includes(q);
+        const matchLoc = !locFilter || location === locFilter;
+        const matchSal = !salMin || salary >= salMin;
+        return matchQ && matchLoc && matchSal;
+      });
+
+      // Sorting
+      if (sortVal === 'salary-desc') {
+        filteredJobs.sort((a, b) => (b.max_salary || 0) - (a.max_salary || 0));
+      } else if (sortVal === 'salary-asc') {
+        filteredJobs.sort((a, b) => (a.min_salary || 0) - (b.min_salary || 0));
+      } else if (sortVal === 'title-asc') {
+        filteredJobs.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+      } else if (sortVal === 'date-desc') {
+        filteredJobs.sort((a, b) => (b.posted_date || '').localeCompare(a.posted_date || ''));
+      }
+
+      currentPage = 1;
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('jobs-tbody');
+      tbody.innerHTML = '';
+
+      const start = (currentPage - 1) * pageSize;
+      const end = Math.min(start + pageSize, filteredJobs.length);
+      const pageData = filteredJobs.slice(start, end);
+
+      if (pageData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem; color:var(--text-muted);">No records found matching filters.</td></tr>';
+      } else {
+        pageData.forEach(j => {
+          const tr = document.createElement('tr');
+          const title = j.title || j.job_title || 'N/A';
+          const company = j.company || j.company_name || 'N/A';
+          const loc = j.location || j.job_location || 'Remote';
+          const minSal = j.min_salary ? '$' + Number(j.min_salary).toLocaleString() : '—';
+          const maxSal = j.max_salary ? '$' + Number(j.max_salary).toLocaleString() : '—';
+          const curr = j.currency || 'USD';
+          const date = j.posted_date || '2026-10-18';
+
+          tr.innerHTML = `
+            <td><strong>${title}</strong></td>
+            <td>${company}</td>
+            <td><span class="tag tag-blue">${loc}</span></td>
+            <td>${minSal}</td>
+            <td>${maxSal}</td>
+            <td><code>${curr}</code></td>
+            <td>${date}</td>
+            <td><span class="tag tag-green">Ingested</span></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Update Pagination controls
+      document.getElementById('page-info').textContent = filteredJobs.length > 0 
+        ? `Showing ${start + 1}-${end} of ${filteredJobs.length} records`
+        : '0 records found';
+      document.getElementById('prev-btn').disabled = (currentPage === 1);
+      document.getElementById('next-btn').disabled = (end >= filteredJobs.length);
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable();
+      }
+    }
+    function nextPage() {
+      if ((currentPage * pageSize) < filteredJobs.length) {
+        currentPage++;
+        renderTable();
+      }
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      event.target.classList.add('active');
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.classList.add('active');
+    }
+
+    // Initial render
+    filterData();
+  </script>
+</body>
+</html>

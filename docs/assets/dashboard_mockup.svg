@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560">
+  <defs>
+    <filter id="winShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0F172A" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1200" height="560" fill="#F1F5F9" rx="16"/>
+
+  <!-- Browser Window Frame -->
+  <g transform="translate(40, 30)" filter="url(#winShadow)">
+    <rect width="1120" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+
+    <!-- Window Titlebar -->
+    <rect width="1120" height="42" rx="12" fill="#F8FAFC"/>
+    <circle cx="25" cy="21" r="5" fill="#EF4444"/>
+    <circle cx="41" cy="21" r="5" fill="#F59E0B"/>
+    <circle cx="57" cy="21" r="5" fill="#10B981"/>
+    <rect x="180" y="9" width="760" height="24" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="450" y="25" font-family="monospace" font-size="11" fill="#64748B">http://localhost:8501 — StreamForge Command Center</text>
+
+    <!-- Sidebar (Deep Navy) -->
+    <g transform="translate(0, 42)">
+      <rect width="240" height="458" fill="#0F172A"/>
+      <text x="24" y="40" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="#38BDF8">⚡ StreamForge</text>
+      <text x="24" y="58" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="500" fill="#94A3B8">Data Engineering Suite</text>
+
+      <!-- Nav Items -->
+      <g transform="translate(16, 85)">
+        <rect x="0" y="0" width="208" height="34" rx="6" fill="#1E293B"/>
+        <text x="14" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600" fill="#38BDF8">📊 Overview</text>
+
+        <text x="14" y="60" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1">🌐 Extraction Studio</text>
+        <text x="14" y="95" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1">✨ Quality Inspector</text>
+        <text x="14" y="130" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1">🗄️ Database Explorer</text>
+        <text x="14" y="165" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1">⚡ Automation Center</text>
+        <text x="14" y="200" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1">📜 Reports &amp; Logs</text>
+      </g>
+    </g>
+
+    <!-- Main Content Area (Light Minimalist) -->
+    <g transform="translate(265, 60)">
+      <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="800" fill="#0F172A">System Overview &amp; Operations Telemetry</text>
+
+      <!-- 4 KPI Cards -->
+      <g transform="translate(0, 45)">
+        <!-- Card 1 -->
+        <rect x="0" y="0" width="195" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-left="4" stroke-width="1.5"/>
+        <rect x="0" y="0" width="4" height="75" rx="2" fill="#0EA5E9"/>
+        <text x="16" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#64748B" letter-spacing="0.5">DATABASE LISTINGS</text>
+        <text x="16" y="55" font-family="monospace" font-size="22" font-weight="700" fill="#0F172A">121</text>
+        <text x="90" y="53" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#059669">↑ Verified</text>
+
+        <!-- Card 2 -->
+        <rect x="210" y="0" width="195" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+        <rect x="210" y="0" width="4" height="75" rx="2" fill="#10B981"/>
+        <text x="226" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#64748B" letter-spacing="0.5">LATEST PIPELINE</text>
+        <text x="226" y="55" font-family="monospace" font-size="20" font-weight="700" fill="#059669">SUCCESS</text>
+        <text x="330" y="53" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#64748B">0.63s</text>
+
+        <!-- Card 3 -->
+        <rect x="420" y="0" width="195" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+        <rect x="420" y="0" width="4" height="75" rx="2" fill="#6366F1"/>
+        <text x="436" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#64748B" letter-spacing="0.5">INTEGRITY DUPLICATES</text>
+        <text x="436" y="55" font-family="monospace" font-size="22" font-weight="700" fill="#0F172A">0</text>
+        <text x="475" y="53" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#059669">Strict 0</text>
+
+        <!-- Card 4 -->
+        <rect x="630" y="0" width="195" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+        <rect x="630" y="0" width="4" height="75" rx="2" fill="#F59E0B"/>
+        <text x="646" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#64748B" letter-spacing="0.5">TEST SUITE COVERAGE</text>
+        <text x="646" y="55" font-family="monospace" font-size="22" font-weight="700" fill="#0F172A">38 / 38</text>
+        <text x="735" y="53" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#059669">100%</text>
+      </g>
+
+      <!-- Mock Data Table -->
+      <g transform="translate(0, 140)">
+        <rect width="520" height="260" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="18" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#0F172A">Recent Pipeline Telemetry</text>
+        <!-- Table Header -->
+        <rect x="0" y="42" width="520" height="28" fill="#F8FAFC"/>
+        <text x="18" y="60" font-family="monospace" font-size="10" font-weight="600" fill="#64748B">ID</text>
+        <text x="90" y="60" font-family="monospace" font-size="10" font-weight="600" fill="#64748B">TRIGGER</text>
+        <text x="170" y="60" font-family="monospace" font-size="10" font-weight="600" fill="#64748B">STATUS</text>
+        <text x="250" y="60" font-family="monospace" font-size="10" font-weight="600" fill="#64748B">DURATION</text>
+        <text x="340" y="60" font-family="monospace" font-size="10" font-weight="600" fill="#64748B">EXTRACTED</text>
+        <text x="440" y="60" font-family="monospace" font-size="10" font-weight="600" fill="#64748B">INSERTED</text>
+
+        <!-- Row 1 -->
+        <text x="18" y="94" font-family="monospace" font-size="11" fill="#0F172A">bbd7ad29</text>
+        <text x="90" y="94" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#334155">cli</text>
+        <rect x="165" y="80" width="55" height="18" rx="9" fill="#ECFDF5"/>
+        <text x="173" y="93" font-family="monospace" font-size="10" font-weight="700" fill="#059669">SUCCESS</text>
+        <text x="250" y="94" font-family="monospace" font-size="11" fill="#334155">0.629s</text>
+        <text x="350" y="94" font-family="monospace" font-size="11" fill="#334155">120</text>
+        <text x="450" y="94" font-family="monospace" font-size="11" fill="#334155">114</text>
+        <line x1="0" y1="108" x2="520" y2="108" stroke="#F1F5F9"/>
+
+        <!-- Row 2 -->
+        <text x="18" y="130" font-family="monospace" font-size="11" fill="#0F172A">8b3c367d</text>
+        <text x="90" y="130" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#334155">dry-run</text>
+        <rect x="165" y="116" width="55" height="18" rx="9" fill="#EFF6FF"/>
+        <text x="173" y="129" font-family="monospace" font-size="10" font-weight="700" fill="#2563EB">DRY-RUN</text>
+        <text x="250" y="130" font-family="monospace" font-size="11" fill="#334155">0.552s</text>
+        <text x="350" y="130" font-family="monospace" font-size="11" fill="#334155">120</text>
+        <text x="450" y="130" font-family="monospace" font-size="11" fill="#334155">0 (skip)</text>
+      </g>
+
+      <!-- Mock Mini Chart -->
+      <g transform="translate(540, 140)">
+        <rect width="285" height="260" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="18" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#0F172A">Category Distribution</text>
+
+        <!-- Bar 1 -->
+        <text x="18" y="68" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#64748B">Data Engineering</text>
+        <rect x="18" y="76" width="200" height="16" rx="4" fill="#0284C7"/>
+        <text x="225" y="89" font-family="monospace" font-size="10" font-weight="700" fill="#0F172A">38</text>
+
+        <!-- Bar 2 -->
+        <text x="18" y="118" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#64748B">Cloud Infrastructure</text>
+        <rect x="18" y="126" width="160" height="16" rx="4" fill="#38BDF8"/>
+        <text x="185" y="139" font-family="monospace" font-size="10" font-weight="700" fill="#0F172A">29</text>
+
+        <!-- Bar 3 -->
+        <text x="18" y="168" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#64748B">Backend Systems</text>
+        <rect x="18" y="176" width="140" height="16" rx="4" fill="#6366F1"/>
+        <text x="165" y="189" font-family="monospace" font-size="10" font-weight="700" fill="#0F172A">24</text>
+
+        <!-- Bar 4 -->
+        <text x="18" y="218" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#64748B">Analytics &amp; BI</text>
+        <rect x="18" y="226" width="115" height="16" rx="4" fill="#10B981"/>
+        <text x="140" y="239" font-family="monospace" font-size="10" font-weight="700" fill="#0F172A">18</text>
+      </g>
+    </g>
+  </g>
+</svg>
