@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+
+# Logs and runtime locks (preserve folder with .gitkeep)
+logs/*.log
+logs/*.lock
+
+# Local secrets
+.env
+.env.local
+
+# Database temporary journals
+database/*.db-journal
+database/*.db-wal
+database/*.db-shm
