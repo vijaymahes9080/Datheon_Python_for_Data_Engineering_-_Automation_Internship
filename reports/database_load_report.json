@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-10-21T11:37:40.772885+00:00",
+  "database_url": "sqlite:///%3Amemory%3A",
+  "total_records": 2,
+  "duplicate_count": 0,
+  "duplicate_audit_passed": true,
+  "category_distribution": [
+    {
+      "category": "Cloud & Infra",
+      "total_jobs": 1
+    },
+    {
+      "category": "Data Engineering",
+      "total_jobs": 1
+    }
+  ],
+  "salary_benchmarks": [
+    {
+      "currency": "EUR",
+      "listing_count": 1,
+      "lowest_min": 90000.0,
+      "highest_max": 110000.0,
+      "overall_average": 100000.0
+    },
+    {
+      "currency": "USD",
+      "listing_count": 1,
+      "lowest_min": 120000.0,
+      "highest_max": 150000.0,
+      "overall_average": 135000.0
+    }
+  ],
+  "top_locations": [
+    {
+      "location": "Remote (US)",
+      "count": 1
+    },
+    {
+      "location": "Berlin, Germany",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "row_index": 2,
+    "record": {
+      "job_title": "Data Engineer",
+      "company_name": "Apex",
+      "source_url": "https://example.com/1"
+    },
+    "reasons": [
+      "Duplicate record detected with fingerprint 4ae1db38e45c212eb05dc521e69af0178557d8ab577870c8d7e41aea91bce115"
+    ]
+  }
+]

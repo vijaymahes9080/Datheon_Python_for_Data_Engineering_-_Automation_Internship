@@ -1,0 +1,26 @@
+{
+  "start_time": "2026-10-21T11:37:40.362294+00:00",
+  "end_time": "2026-10-21T11:37:40.638123+00:00",
+  "elapsed_seconds": 0.272,
+  "is_offline_run": true,
+  "starting_url": "page_1.html",
+  "pages_visited_count": 3,
+  "pages_visited": [
+    "page_1.html",
+    "page_2.html",
+    "page_3.html"
+  ],
+  "successful_requests": 3,
+  "failed_pages_count": 0,
+  "failed_pages": [],
+  "records_extracted_total": 120,
+  "duplicates_removed": 0,
+  "unique_records_retained": 120,
+  "exports": {
+    "record_count": 120,
+    "csv_path": "D:\\intership\\Datheon_Python_for_Data_Engineering_&_Automation_Internship\\vj\\data\\raw\\extracted_jobs.csv",
+    "csv_size_bytes": 32724,
+    "json_path": "D:\\intership\\Datheon_Python_for_Data_Engineering_&_Automation_Internship\\vj\\data\\raw\\extracted_jobs.json",
+    "json_size_bytes": 62433
+  }
+}

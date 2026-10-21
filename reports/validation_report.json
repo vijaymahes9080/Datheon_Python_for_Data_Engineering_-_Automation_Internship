@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-10-21T11:37:40.838315+00:00",
+  "overall_status": "PASS",
+  "summary": {
+    "input_record_count": 3,
+    "output_clean_record_count": 2,
+    "rejected_record_count": 1,
+    "duplicates_removed": 0,
+    "acceptance_rate_pct": 66.67
+  },
+  "transformations_applied": {
+    "columns_renamed": {
+      "Job Title": "job_title"
+    },
+    "whitespace_trimmed": true,
+    "currency_parsed": true,
+    "dates_normalized_to_iso": true,
+    "missing_values_imputed": [
+      "location",
+      "category",
+      "employment_type"
+    ]
+  },
+  "rejection_reasons_breakdown": {
+    "Missing title": 1
+  },
+  "before_profile": {
+    "record_count": 3,
+    "column_count": 2,
+    "columns": {
+      "Job Title": {
+        "dtype": "str",
+        "null_count": 1,
+        "null_percentage": 33.33,
+        "unique_values": 2
+      },
+      "Salary": {
+        "dtype": "str",
+        "null_count": 1,
+        "null_percentage": 33.33,
+        "unique_values": 2
+      }
+    }
+  },
+  "after_profile": {
+    "record_count": 2,
+    "column_count": 2,
+    "columns": {
+      "job_title": {
+        "dtype": "str",
+        "null_count": 0,
+        "null_percentage": 0.0,
+        "unique_values": 2
+      },
+      "salary_min": {
+        "dtype": "float64",
+        "null_count": 0,
+        "null_percentage": 0.0,
+        "unique_values": 2
+      }
+    }
+  }
+}
