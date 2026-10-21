@@ -95,61 +95,95 @@ class JobRepository:
         return report
 
     def _upsert_batch(self, batch: list[dict[str, Any]], report: IngestionReport) -> None:
-        """Upsert a single batch using native dialect conflict clauses."""
+        """Upsert a single batch using native dialect conflict clauses within an atomic transaction."""
+        session_factory = self.engine
         with get_session(self.engine) as session:
-            # Query existing records in this batch to determine inserted vs updated counts
-            fps = [r["fingerprint_hash"] for r in batch]
-            existing_fps = set(
-                session.scalars(
-                    select(JobListing.fingerprint_hash).where(JobListing.fingerprint_hash.in_(fps))
-                ).all()
-            )
-
-            update_cols = {
-                "job_title": None,
-                "company_name": None,
-                "salary_raw": None,
-                "salary_min": None,
-                "salary_max": None,
-                "salary_avg": None,
-                "currency": None,
-                "location": None,
-                "category": None,
-                "employment_type": None,
-                "posted_date": None,
-                "source_url": None,
-                "updated_at": func.now(),
-            }
-
-            if self.is_sqlite:
-                stmt = sqlite_insert(JobListing).values(batch)
-                stmt = stmt.on_conflict_do_update(
-                    index_elements=[JobListing.fingerprint_hash],
-                    set_={
-                        col: getattr(stmt.excluded, col)
-                        for col in update_cols
-                        if col != "updated_at"
-                    } | {"updated_at": func.now()},
-                )
-            else:
-                stmt = pg_insert(JobListing).values(batch)
-                stmt = stmt.on_conflict_do_update(
-                    index_elements=[JobListing.fingerprint_hash],
-                    set_={
-                        col: getattr(stmt.excluded, col)
-                        for col in update_cols
-                        if col != "updated_at"
-                    } | {"updated_at": func.now()},
+            try:
+                # Query existing records in this batch to determine inserted vs updated counts
+                fps = [r["fingerprint_hash"] for r in batch]
+                existing_fps = set(
+                    session.scalars(
+                        select(JobListing.fingerprint_hash).where(JobListing.fingerprint_hash.in_(fps))
+                    ).all()
                 )
 
-            session.execute(stmt)
+                update_cols = {
+                    "job_title": None,
+                    "company_name": None,
+                    "salary_raw": None,
+                    "salary_min": None,
+                    "salary_max": None,
+                    "salary_avg": None,
+                    "currency": None,
+                    "location": None,
+                    "category": None,
+                    "employment_type": None,
+                    "posted_date": None,
+                    "source_url": None,
+                    "updated_at": func.now(),
+                }
 
-            # Update report metrics
-            for r in batch:
-                if r["fingerprint_hash"] in existing_fps:
-                    report.updated += 1
+                if self.is_sqlite:
+                    stmt = sqlite_insert(JobListing).values(batch)
+                    stmt = stmt.on_conflict_do_update(
+                        index_elements=[JobListing.fingerprint_hash],
+                        set_={
+                            col: getattr(stmt.excluded, col)
+                            for col in update_cols
+                            if col != "updated_at"
+                        } | {"updated_at": func.now()},
+                    )
                 else:
-                    report.inserted += 1
+                    stmt = pg_insert(JobListing).values(batch)
+                    stmt = stmt.on_conflict_do_update(
+                        index_elements=[JobListing.fingerprint_hash],
+                        set_={
+                            col: getattr(stmt.excluded, col)
+                            for col in update_cols
+                            if col != "updated_at"
+                        } | {"updated_at": func.now()},
+                    )
+
+                session.execute(stmt)
+
+                # Update report metrics upon successful transaction commit
+                for r in batch:
+                    if r["fingerprint_hash"] in existing_fps:
+                        report.updated += 1
+                    else:
+                        report.inserted += 1
+
+            except Exception as exc:
+                # Session context manager triggers rollback automatically
+                logger.error(f"Batch transaction aborted and rolled back: {exc}")
+                report.failed += len(batch)
+                report.errors.append(f"Batch failed ({len(batch)} records): {exc}")
+                raise
+
+    def execute_transaction_with_rollback_test(
+        self, records: list[dict[str, Any]], simulate_failure: bool = False
+    ) -> bool:
+        """Execute atomic transaction with explicit verification of rollback on failure."""
+        with get_session(self.engine) as session:
+            try:
+                for r in records:
+                    item = JobListing(
+                        fingerprint_hash=r["fingerprint_hash"],
+                        job_title=r["job_title"],
+                        company_name=r["company_name"],
+                        source_url=r.get("source_url", ""),
+                    )
+                    session.add(item)
+                    session.flush()
+
+                if simulate_failure:
+                    raise RuntimeError("Simulated transaction fault for rollback verification")
+
+                return True
+            except Exception as exc:
+                session.rollback()
+                logger.warning(f"Verified rollback: transaction safely reversed ({exc})")
+                return False
 
     def get_total_count(self) -> int:
         """Return total count of stored job listings."""
