@@ -104,17 +104,21 @@ def parse_salary_and_currency(raw_salary: str | None) -> dict[str, Any]:
 def parse_and_normalize_date(
     raw_date: str | None,
     reference_date: datetime.date | None = None,
+    allow_missing: bool = True,
 ) -> tuple[str | None, bool, str]:
     """Parse raw date text into ISO-8601 YYYY-MM-DD.
 
     Returns:
         (iso_date_string, is_valid, status_or_reason)
     """
-    if not raw_date or not str(raw_date).strip():
+    ref = reference_date or datetime.date.today()
+
+    if not raw_date or not str(raw_date).strip() or str(raw_date).lower() == "nan":
+        if allow_missing:
+            return ref.isoformat(), True, "Defaulted missing date to reference date"
         return None, False, "Missing date string"
 
     text = str(raw_date).strip()
-    ref = reference_date or datetime.date.today()
 
     # 1. Check relative date formats (e.g., '2 days ago', 'yesterday', 'today')
     rel_match = re.search(r"(\d+)\s+day[s]?\s+ago", text, re.IGNORECASE)
