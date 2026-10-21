@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="liBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E0F2FE"/>
+    </linearGradient>
+    <filter id="liShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#liBg)" rx="20"/>
+  <rect x="1" y="1" width="1198" height="628" fill="none" stroke="#E2E8F0" stroke-width="2" rx="19"/>
+
+  <!-- Left Accent Strip -->
+  <rect x="0" y="0" width="12" height="630" fill="#0284C7" rx="6"/>
+
+  <!-- Main Showcase Container -->
+  <g transform="translate(70, 60)">
+    <!-- Header Badge -->
+    <rect x="0" y="0" width="410" height="34" rx="17" fill="#0F172A"/>
+    <text x="20" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#38BDF8" letter-spacing="1.2">PROJECT SHOWCASE • DATA ENGINEERING &amp; AUTOMATION</text>
+
+    <!-- Main Title -->
+    <text x="0" y="100" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="48" font-weight="900" fill="#0F172A" letter-spacing="-1">StreamForge ⚡</text>
+    <text x="0" y="140" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="700" fill="#0284C7">Autonomous Web Extractor, Quality Engine &amp; ETL Orchestrator</text>
+    <text x="0" y="172" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="400" fill="#64748B">A full-stack, test-driven Python data engineering system designed for high reliability and zero downtime.</text>
+
+    <!-- 4 Milestone Highlights Cards -->
+    <g transform="translate(0, 210)" filter="url(#liShadow)">
+      <!-- Box 1 -->
+      <rect x="0" y="0" width="245" height="160" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <circle cx="36" cy="36" r="18" fill="#E0F2FE"/>
+      <text x="28" y="43" font-size="17">🌐</text>
+      <text x="20" y="82" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="800" fill="#0F172A">120+ Records</text>
+      <text x="20" y="105" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600" fill="#0284C7">Autonomous Extractor</text>
+      <text x="20" y="130" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="400" fill="#64748B">Exponential backoff &amp; SHA-256 fingerprint deduplication.</text>
+
+      <!-- Box 2 -->
+      <rect x="270" y="0" width="245" height="160" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <circle cx="306" cy="36" r="18" fill="#ECFDF5"/>
+      <text x="298" y="43" font-size="17">✨</text>
+      <text x="290" y="82" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="800" fill="#0F172A">94.3% Clean</text>
+      <text x="290" y="105" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600" fill="#059669">Quality &amp; Validation</text>
+      <text x="290" y="130" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="400" fill="#64748B">Pandas snake_case, ISO dates, currency parser &amp; rejections.</text>
+
+      <!-- Box 3 -->
+      <rect x="540" y="0" width="245" height="160" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <circle cx="576" cy="36" r="18" fill="#EEF2FF"/>
+      <text x="568" y="43" font-size="17">🗄️</text>
+      <text x="560" y="82" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="800" fill="#0F172A">0 Duplicates</text>
+      <text x="560" y="105" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600" fill="#4F46E5">Idempotent Upserts</text>
+      <text x="560" y="130" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="400" fill="#64748B">SQLAlchemy 2.0 ON CONFLICT, rollback safety &amp; indexes.</text>
+
+      <!-- Box 4 -->
+      <rect x="810" y="0" width="245" height="160" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <circle cx="846" cy="36" r="18" fill="#FEF3C7"/>
+      <text x="838" y="43" font-size="17">⚡</text>
+      <text x="830" y="82" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="800" fill="#0F172A">0.63s ETL</text>
+      <text x="830" y="105" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600" fill="#D97706">8-Stage Automation</text>
+      <text x="830" y="130" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="400" fill="#64748B">Concurrency mutex locks, dry-run simulation &amp; alerts.</text>
+    </g>
+
+    <!-- Footer Banner / Author Info -->
+    <g transform="translate(0, 410)">
+      <rect width="1055" height="75" rx="10" fill="#0F172A"/>
+      <text x="25" y="34" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Vijay Maheswari • Python Data Engineering &amp; Automation</text>
+      <text x="25" y="55" font-family="monospace" font-size="12" fill="#38BDF8">github.com/vijaymahes9080/Datheon_Python_for_Data_Engineering_-_Automation_Internship</text>
+      
+      <rect x="870" y="20" width="160" height="35" rx="6" fill="#0284C7"/>
+      <text x="888" y="43" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">38 / 38 Tests Pass</text>
+    </g>
+  </g>
+</svg>

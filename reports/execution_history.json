@@ -1,5 +1,263 @@
 [
   {
+    "execution_id": "0c9af2f6-ba2d-48f1-9a74-933050ffb757",
+    "trigger_type": "test_dry_run",
+    "is_dry_run": true,
+    "status": "SUCCESS",
+    "start_time": "2026-10-21T11:47:22.553362+00:00",
+    "end_time": "2026-10-21T11:47:22.782606+00:00",
+    "duration_seconds": 0.229,
+    "error_message": null,
+    "stages": {
+      "Extract": {
+        "name": "Extract",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.553362+00:00",
+        "end_time": "2026-10-21T11:47:22.698913+00:00",
+        "duration_seconds": 0.146,
+        "error_message": null,
+        "metrics": {
+          "pages_visited": 1,
+          "extracted_count": 20,
+          "duplicates_removed": 0
+        }
+      },
+      "Inspect": {
+        "name": "Inspect",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.698913+00:00",
+        "end_time": "2026-10-21T11:47:22.707212+00:00",
+        "duration_seconds": 0.008,
+        "error_message": null,
+        "metrics": {
+          "columns": [
+            "job_title",
+            "company_name",
+            "salary_raw",
+            "location",
+            "category",
+            "employment_type",
+            "posted_date_raw",
+            "source_url",
+            "extraction_timestamp",
+            "fingerprint_hash"
+          ],
+          "initial_records": 20
+        }
+      },
+      "Transform": {
+        "name": "Transform",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.707212+00:00",
+        "end_time": "2026-10-21T11:47:22.724753+00:00",
+        "duration_seconds": 0.018,
+        "error_message": null,
+        "metrics": {
+          "renamed_columns_count": 10
+        }
+      },
+      "Validate": {
+        "name": "Validate",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.724753+00:00",
+        "end_time": "2026-10-21T11:47:22.742539+00:00",
+        "duration_seconds": 0.018,
+        "error_message": null,
+        "metrics": {
+          "valid_count": 20,
+          "rejected_count": 0,
+          "acceptance_rate": 100.0
+        }
+      },
+      "Upsert": {
+        "name": "Upsert",
+        "status": "SKIPPED",
+        "start_time": null,
+        "end_time": null,
+        "duration_seconds": 0.0,
+        "error_message": null,
+        "metrics": {
+          "reason": "Dry run mode active"
+        }
+      },
+      "Verify": {
+        "name": "Verify",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.742539+00:00",
+        "end_time": "2026-10-21T11:47:22.756106+00:00",
+        "duration_seconds": 0.014,
+        "error_message": null,
+        "metrics": {
+          "total_stored_in_db": 121,
+          "duplicates_in_db": 0,
+          "audit_passed": true
+        }
+      },
+      "Report": {
+        "name": "Report",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.756106+00:00",
+        "end_time": "2026-10-21T11:47:22.782606+00:00",
+        "duration_seconds": 0.026,
+        "error_message": null,
+        "metrics": {
+          "reports_written": [
+            "validation_report.json",
+            "validation_summary.md"
+          ]
+        }
+      },
+      "Notify": {
+        "name": "Notify",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.782606+00:00",
+        "end_time": "2026-10-21T11:47:22.784623+00:00",
+        "duration_seconds": 0.002,
+        "error_message": null,
+        "metrics": {
+          "notification_dispatched": true
+        }
+      }
+    },
+    "record_counts": {
+      "extracted": 20,
+      "cleaned": 20,
+      "rejected": 0,
+      "inserted": 0,
+      "updated": 0
+    }
+  },
+  {
+    "execution_id": "d6d23c83-3632-419e-b54d-91101324dd5a",
+    "trigger_type": "test_e2e",
+    "is_dry_run": false,
+    "status": "SUCCESS",
+    "start_time": "2026-10-21T11:47:21.856893+00:00",
+    "end_time": "2026-10-21T11:47:22.501773+00:00",
+    "duration_seconds": 0.645,
+    "error_message": null,
+    "stages": {
+      "Extract": {
+        "name": "Extract",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:21.856893+00:00",
+        "end_time": "2026-10-21T11:47:22.297513+00:00",
+        "duration_seconds": 0.441,
+        "error_message": null,
+        "metrics": {
+          "pages_visited": 3,
+          "extracted_count": 120,
+          "duplicates_removed": 0
+        }
+      },
+      "Inspect": {
+        "name": "Inspect",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.297513+00:00",
+        "end_time": "2026-10-21T11:47:22.308154+00:00",
+        "duration_seconds": 0.011,
+        "error_message": null,
+        "metrics": {
+          "columns": [
+            "job_title",
+            "company_name",
+            "salary_raw",
+            "location",
+            "category",
+            "employment_type",
+            "posted_date_raw",
+            "source_url",
+            "extraction_timestamp",
+            "fingerprint_hash"
+          ],
+          "initial_records": 120
+        }
+      },
+      "Transform": {
+        "name": "Transform",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.308154+00:00",
+        "end_time": "2026-10-21T11:47:22.324679+00:00",
+        "duration_seconds": 0.017,
+        "error_message": null,
+        "metrics": {
+          "renamed_columns_count": 10
+        }
+      },
+      "Validate": {
+        "name": "Validate",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.324679+00:00",
+        "end_time": "2026-10-21T11:47:22.347045+00:00",
+        "duration_seconds": 0.022,
+        "error_message": null,
+        "metrics": {
+          "valid_count": 120,
+          "rejected_count": 0,
+          "acceptance_rate": 100.0
+        }
+      },
+      "Upsert": {
+        "name": "Upsert",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.347045+00:00",
+        "end_time": "2026-10-21T11:47:22.449856+00:00",
+        "duration_seconds": 0.103,
+        "error_message": null,
+        "metrics": {
+          "inserted": 0,
+          "updated": 120,
+          "failed": 0
+        }
+      },
+      "Verify": {
+        "name": "Verify",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.449856+00:00",
+        "end_time": "2026-10-21T11:47:22.472602+00:00",
+        "duration_seconds": 0.023,
+        "error_message": null,
+        "metrics": {
+          "total_stored_in_db": 121,
+          "duplicates_in_db": 0,
+          "audit_passed": true
+        }
+      },
+      "Report": {
+        "name": "Report",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.472602+00:00",
+        "end_time": "2026-10-21T11:47:22.501773+00:00",
+        "duration_seconds": 0.029,
+        "error_message": null,
+        "metrics": {
+          "reports_written": [
+            "validation_report.json",
+            "validation_summary.md"
+          ]
+        }
+      },
+      "Notify": {
+        "name": "Notify",
+        "status": "SUCCESS",
+        "start_time": "2026-10-21T11:47:22.501773+00:00",
+        "end_time": "2026-10-21T11:47:22.502591+00:00",
+        "duration_seconds": 0.001,
+        "error_message": null,
+        "metrics": {
+          "notification_dispatched": true
+        }
+      }
+    },
+    "record_counts": {
+      "extracted": 120,
+      "cleaned": 120,
+      "rejected": 0,
+      "inserted": 0,
+      "updated": 120
+    }
+  },
+  {
     "execution_id": "2206930a-2846-4216-801a-14fc9da3815d",
     "trigger_type": "test_dry_run",
     "is_dry_run": true,

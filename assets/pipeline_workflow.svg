@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" width="1200" height="460">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="460" fill="#F8FAFC" rx="16"/>
+  <rect x="1" y="1" width="1198" height="458" fill="none" stroke="#E2E8F0" stroke-width="2" rx="15"/>
+
+  <!-- Section Header -->
+  <text x="60" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#0284C7" letter-spacing="1.5">END-TO-END DATA ARCHITECTURE</text>
+  <text x="60" y="90" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="800" fill="#0F172A">StreamForge 4-Stage ETL State Machine</text>
+  <text x="60" y="115" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="400" fill="#64748B">Extract -> Inspect -> Transform -> Validate -> Upsert -> Verify -> Report -> Notify</text>
+
+  <!-- Connecting Line -->
+  <line x1="180" y1="260" x2="1020" y2="260" stroke="#CBD5E1" stroke-width="3" stroke-dasharray="6 6"/>
+
+  <!-- Card 1: Task 1 Extractor -->
+  <g transform="translate(60, 150)" filter="url(#cardShadow)">
+    <rect width="250" height="260" rx="12" fill="url(#cardGrad)" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect x="0" y="0" width="250" height="6" rx="3" fill="#0284C7"/>
+    <circle cx="35" cy="35" r="18" fill="#E0F2FE"/>
+    <text x="27" y="42" font-size="18">🌐</text>
+    <text x="65" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" fill="#0284C7">TASK 1</text>
+    <text x="65" y="48" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Web Extractor</text>
+
+    <text x="20" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600" fill="#334155">• BeautifulSoup4 &amp; Requests</text>
+    <text x="20" y="110" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Exponential Backoff (3x)</text>
+    <text x="20" y="135" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• SHA-256 Fingerprinting</text>
+    <text x="20" y="160" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Multi-page Pagination</text>
+
+    <rect x="20" y="195" width="210" height="42" rx="6" fill="#F1F5F9"/>
+    <text x="30" y="213" font-family="monospace" font-size="11" font-weight="600" fill="#0284C7">120 Records Extracted</text>
+    <text x="30" y="228" font-family="monospace" font-size="10" font-weight="500" fill="#64748B">Output: CSV &amp; JSON in raw/</text>
+  </g>
+
+  <!-- Card 2: Task 2 Quality Engine -->
+  <g transform="translate(340, 150)" filter="url(#cardShadow)">
+    <rect width="250" height="260" rx="12" fill="url(#cardGrad)" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect x="0" y="0" width="250" height="6" rx="3" fill="#10B981"/>
+    <circle cx="35" cy="35" r="18" fill="#ECFDF5"/>
+    <text x="27" y="42" font-size="18">✨</text>
+    <text x="65" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" fill="#059669">TASK 2</text>
+    <text x="65" y="48" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Quality Engine</text>
+
+    <text x="20" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600" fill="#334155">• Snake_case Standardization</text>
+    <text x="20" y="110" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Currency &amp; Salary Parser</text>
+    <text x="20" y="135" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• ISO-8601 Date Normalizer</text>
+    <text x="20" y="160" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Pydantic Rejection Ledger</text>
+
+    <rect x="20" y="195" width="210" height="42" rx="6" fill="#F1F5F9"/>
+    <text x="30" y="213" font-family="monospace" font-size="11" font-weight="600" fill="#059669">94.26% Pass (115/122)</text>
+    <text x="30" y="228" font-family="monospace" font-size="10" font-weight="500" fill="#64748B">7 Anomaly Rows Isolated</text>
+  </g>
+
+  <!-- Card 3: Task 3 Relational Persistence -->
+  <g transform="translate(620, 150)" filter="url(#cardShadow)">
+    <rect width="250" height="260" rx="12" fill="url(#cardGrad)" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect x="0" y="0" width="250" height="6" rx="3" fill="#6366F1"/>
+    <circle cx="35" cy="35" r="18" fill="#EEF2FF"/>
+    <text x="27" y="42" font-size="18">🗄️</text>
+    <text x="65" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" fill="#4F46E5">TASK 3</text>
+    <text x="65" y="48" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Upsert Persistence</text>
+
+    <text x="20" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600" fill="#334155">• SQLAlchemy 2.0 Engine</text>
+    <text x="20" y="110" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Dialect ON CONFLICT Update</text>
+    <text x="20" y="135" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Atomic Transaction Rollback</text>
+    <text x="20" y="160" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Composite Indexing</text>
+
+    <rect x="20" y="195" width="210" height="42" rx="6" fill="#F1F5F9"/>
+    <text x="30" y="213" font-family="monospace" font-size="11" font-weight="600" fill="#4F46E5">100% Idempotent Upsert</text>
+    <text x="30" y="228" font-family="monospace" font-size="10" font-weight="500" fill="#64748B">0 Duplicate Insertions</text>
+  </g>
+
+  <!-- Card 4: Task 4 Automation & Alerting -->
+  <g transform="translate(900, 150)" filter="url(#cardShadow)">
+    <rect width="250" height="260" rx="12" fill="url(#cardGrad)" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect x="0" y="0" width="250" height="6" rx="3" fill="#F59E0B"/>
+    <circle cx="35" cy="35" r="18" fill="#FEF3C7"/>
+    <text x="27" y="42" font-size="18">⚡</text>
+    <text x="65" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" fill="#D97706">TASK 4</text>
+    <text x="65" y="48" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="700" fill="#0F172A">ETL Orchestrator</text>
+
+    <text x="20" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600" fill="#334155">• 8-Stage Execution Loop</text>
+    <text x="20" y="110" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Concurrency Mutex Lock</text>
+    <text x="20" y="135" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Dry-Run Simulation Mode</text>
+    <text x="20" y="160" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="400" fill="#64748B">• Multi-Channel Alerting</text>
+
+    <rect x="20" y="195" width="210" height="42" rx="6" fill="#F1F5F9"/>
+    <text x="30" y="213" font-family="monospace" font-size="11" font-weight="600" fill="#D97706">Duration: 0.629s</text>
+    <text x="30" y="228" font-family="monospace" font-size="10" font-weight="500" fill="#64748B">Console, Webhook &amp; SMTP</text>
+  </g>
+</svg>
