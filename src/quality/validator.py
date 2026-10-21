@@ -73,13 +73,13 @@ class SchemaValidator:
             # If date is invalid or in future, flag it
             reasons.append(f"Date validation failure: {date_reason}")
 
-        # 6. Ensure Fingerprint Hash exists
-        if not imputed.get("fingerprint_hash"):
-            imputed["fingerprint_hash"] = generate_record_fingerprint(imputed)
-
-        # If any pre-validation checks failed, reject early
+        # 6. If any validation checks failed, reject early before fingerprinting
         if reasons:
             return None, reasons
+
+        # 7. Ensure Fingerprint Hash exists
+        if not imputed.get("fingerprint_hash"):
+            imputed["fingerprint_hash"] = generate_record_fingerprint(imputed)
 
         # 7. Final Pydantic Schema Model Validation
         try:

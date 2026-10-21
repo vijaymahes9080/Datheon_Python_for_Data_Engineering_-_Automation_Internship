@@ -11,22 +11,26 @@ from urllib.parse import urlparse, urlunparse
 logger = logging.getLogger("streamforge.extraction.fingerprint")
 
 
-def canonicalize_text(text: str | None) -> str:
+def canonicalize_text(text: Any) -> str:
     """Normalize text by stripping whitespace, collapsing multiple spaces, and lowercasing."""
-    if not text:
+    if text is None:
         return ""
-    # Collapse multiple whitespaces and trim
-    cleaned = re.sub(r"\s+", " ", str(text).strip())
+    text_str = str(text).strip()
+    if not text_str or text_str.lower() == "nan":
+        return ""
+    cleaned = re.sub(r"\s+", " ", text_str)
     return cleaned.lower()
 
 
-def canonicalize_url(url: str | None) -> str:
+def canonicalize_url(url: Any) -> str:
     """Normalize URL by lowercasing scheme/host, removing trailing slash, and stripping fragments."""
-    if not url:
+    if url is None:
+        return ""
+    url_str = str(url).strip()
+    if not url_str or url_str.lower() == "nan":
         return ""
     try:
-        parsed = urlparse(url.strip())
-        # Reconstruct with lowercase scheme & netloc, path without trailing slash
+        parsed = urlparse(url_str)
         clean_path = parsed.path.rstrip("/")
         normalized = urlunparse((
             parsed.scheme.lower(),
@@ -38,7 +42,7 @@ def canonicalize_url(url: str | None) -> str:
         ))
         return normalized
     except Exception:
-        return url.strip().rstrip("/").lower()
+        return url_str.rstrip("/").lower()
 
 
 def generate_record_fingerprint(record: dict[str, Any]) -> str:
